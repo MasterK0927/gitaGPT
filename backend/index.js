@@ -1,18 +1,18 @@
 import { exec } from "child_process";
 import cors from "cors";
 import dotenv from "dotenv";
-import voice from "elevenlabs-node";
 import express from "express";
 import { promises as fs } from "fs";
 import OpenAI from "openai";
 dotenv.config();
+
+let logs=[]; // Array to store logs
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || '-', // Your OpenAI API key here, I used "-" to avoid errors when the key is not set but you should not do that
 });
 
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
-const voiceID = "kgG7dCoKCfLehAPWkJOE";
 
 const app = express();
 app.use(express.json());
@@ -23,8 +23,21 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+const MAX_LOGS = 5; // Maximum number of logs to keep
+
+app.get("/logs", async (req, res) => {
+  const logsToSend = logs.slice(-MAX_LOGS); // Get the last MAX_LOGS logs
+  res.json(logsToSend); // Send the logs array as JSON response
+});
+
+app.get("/clearlogs", async (req, res) => {
+  logs.splice(0, logs.length - MAX_LOGS); // Remove all logs except the last MAX_LOGS
+  res.sendStatus(200); // Send a success response
+});
+
 app.get("/voices", async (req, res) => {
-  res.send(await voice.getVoices(elevenLabsApiKey));
+  // No need to retrieve voices for OpenAI TTS
+  res.send([]);
 });
 
 const execCommand = (command) => {
@@ -39,32 +52,49 @@ const execCommand = (command) => {
 const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
+  logs.push(`Starting conversion for message ${message}`);
   await execCommand(
     `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`
     // -y to overwrite the file
   );
   console.log(`Conversion done in ${new Date().getTime() - time}ms`);
+  logs.push(`Conversion done in ${new Date().getTime() - time}ms`);
   await execCommand(
-    `./bin/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
+    ` .\\bin\\rhubarb.exe -f json -o "audios/message_${message}.json" "audios/message_${message}.wav" -r phonetic`
   );
   // -r phonetic is faster but less accurate
   console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
+  logs.push(`Lip sync done in ${new Date().getTime() - time}ms`);
+};
+
+const main = async (textInput, fileName) => {
+  const mp3 = await openai.audio.speech.create({
+    model: "tts-1",
+    voice: "alloy",
+    input: textInput,
+    speed: 0.9,
+  });
+  console.log(fileName);
+  logs.push(fileName);
+  const buffer = Buffer.from(await mp3.arrayBuffer());
+  await fs.writeFile(fileName, buffer);
 };
 
 app.post("/chat", async (req, res) => {
   const userMessage = req.body?.message;
   if (!userMessage) {
-    res.send({
+    // Handle case when no user message is provided
+    return res.send({
       messages: [
         {
-          text: "Hey dear... How was your day?",
+          text: "Devotee, Radhe Radhe! I am your Bhagwat Gita based Advice giver. Ask me anything.",
           audio: await audioFileToBase64("audios/intro_0.wav"),
           lipsync: await readJsonTranscript("audios/intro_0.json"),
           facialExpression: "smile",
           animation: "Talking_1",
         },
         {
-          text: "I missed you so much... Please don't go for so long!",
+          text: "I can help you with your problems and give you advice based on the teachings of the Bhagwat Gita.",
           audio: await audioFileToBase64("audios/intro_1.wav"),
           lipsync: await readJsonTranscript("audios/intro_1.json"),
           facialExpression: "sad",
@@ -72,10 +102,10 @@ app.post("/chat", async (req, res) => {
         },
       ],
     });
-    return;
   }
   if (!elevenLabsApiKey || openai.apiKey === "-") {
-    res.send({
+    // Handle case when API keys are missing
+    return res.send({
       messages: [
         {
           text: "Please my dear, don't forget to add your API keys!",
@@ -93,7 +123,6 @@ app.post("/chat", async (req, res) => {
         },
       ],
     });
-    return;
   }
 
   const completion = await openai.chat.completions.create({
@@ -129,7 +158,7 @@ app.post("/chat", async (req, res) => {
     // generate audio file
     const fileName = `audios/message_${i}.mp3`; // The name of your audio file
     const textInput = message.text; // The text you wish to convert to speech
-    await voice.textToSpeech(elevenLabsApiKey, voiceID, fileName, textInput);
+    await main(textInput, fileName);
     // generate lipsync
     await lipSyncMessage(i);
     message.audio = await audioFileToBase64(fileName);

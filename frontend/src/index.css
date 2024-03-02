@@ -14,8 +14,8 @@
 
 body {
   margin: 0;
-  background-color: #faaca8;
-  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+  background-color: #de7f2c;
+  background-image: linear-gradient(19deg, #eea349 0%, #ddd6f3 100%);
 }
 
 body.greenScreen {

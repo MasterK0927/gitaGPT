@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "soundFile": "/Users/wawa/Documents/Projects/wawasensei/r3f-virtual-girlfriend-backend/audios/intro.wav",
+    "soundFile": "/gitaGPT/backend/audios/intro.wav",
     "duration": 1.90
   },
   "mouthCues": [

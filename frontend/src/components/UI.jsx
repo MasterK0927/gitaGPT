@@ -1,17 +1,44 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useChat } from "../hooks/useChat";
+import axios from "axios";
+
+const backendUrl = "http://localhost:3000" || "http:/localhost:3001";
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
+  const [logs, setLogs] = useState([]);
+  const [isBoxOpen, setIsBoxOpen] = useState(true);
 
-  const sendMessage = () => {
+  useEffect(() => {
+    fetchLogs();
+    const interval = setInterval(fetchLogs, 500); // Polling every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchLogs = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/logs`);
+      console.log("logs:", response.data);
+      setLogs(response.data);
+    } catch (error) {
+      console.log("error fetching logs:", error);
+    }
+  };
+
+  const sendMessage = async () => {
     const text = input.current.value;
     if (!loading && !message) {
       chat(text);
       input.current.value = "";
     }
   };
+
+  const handleSendButtonClick = () => {
+    sendMessage();
+    fetchLogs();
+  };
+
   if (hidden) {
     return null;
   }
@@ -22,6 +49,15 @@ export const UI = ({ hidden, ...props }) => {
         <div className="self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg">
           <h1 className="font-black text-xl">GITA Chatbot</h1>
           <p>Always there to help you</p>
+        </div>
+        <div className="flex flex-col gap-2 relative max-w-[200px] max-h-[200px]">
+          <div  id="logs-container" className="flex flex-col gap-2 rounded-lg overflow-hidden">
+            <ul className="bg-black bg-opacity-80 backdrop-blur-md p-4 rounded-lg text-green-500 text-[10px]">
+              {logs.map((log, index) => (
+                <li key={index}>{log}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="w-full flex flex-col items-end justify-center gap-4">
           <button
@@ -99,10 +135,9 @@ export const UI = ({ hidden, ...props }) => {
           />
           <button
             disabled={loading || message}
-            onClick={sendMessage}
-            className={`bg-orange-500 hover:bg-orange-600 text-white p-4 px-10 font-semibold uppercase rounded-md ${
-              loading || message ? "cursor-not-allowed opacity-30" : ""
-            }`}
+            onClick={handleSendButtonClick}
+            className={`bg-orange-500 hover:bg-orange-600 text-white p-4 px-10 font-semibold uppercase rounded-md ${loading || message ? "cursor-not-allowed opacity-30" : ""
+              }`}
           >
             Send
           </button>
