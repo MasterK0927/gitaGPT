@@ -1,0 +1,119 @@
+# ================================
+# Production .dockerignore
+# Industry Best Practices
+# ================================
+
+# Version Control
+.git/
+.gitignore
+.gitattributes
+.github/
+
+# Dependencies (will be installed in container)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files (security)
+.env*
+!.env.production
+.env.local
+.env.development.local
+.env.test.local
+
+# Logs and runtime data
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and test artifacts
+coverage/
+.nyc_output/
+test/
+tests/
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+jest.config.*
+cypress/
+.cypress/
+
+# Build artifacts (frontend)
+dist/
+build/
+.next/
+out/
+
+# Cache directories
+.npm/
+.yarn/
+.pnpm-store/
+.cache/
+.parcel-cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+docs/
+
+# Configuration files
+.eslintrc*
+.prettierrc*
+.editorconfig
+.browserslistrc
+tsconfig*.json
+babel.config.*
+webpack.config.*
+vite.config.*
+rollup.config.*
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Miscellaneous
+.sass-cache/
+.stylelintcache
+.eslintcache
+*.tgz
+*.tar.gz

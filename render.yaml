@@ -1,0 +1,76 @@
+# Render Blueprint for GitaGPT
+# This file defines the infrastructure for deploying on Render
+
+services:
+  # Backend Service
+  - type: web
+    name: gitagpt-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: starter
+    region: oregon
+    branch: main
+    healthCheckPath: /ping
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: OPENAI_API_KEY
+        sync: false  # Set in Render dashboard
+      - key: CLERK_SECRET_KEY
+        sync: false  # Set in Render dashboard
+      - key: SUPABASE_URL
+        sync: false  # Set in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false  # Set in Render dashboard
+      - key: GEMINI_API_KEY
+        sync: false  # Set in Render dashboard
+      - key: ELEVENLABS_API_KEY
+        sync: false  # Set in Render dashboard
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "900000"
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: "100"
+      - key: REQUEST_SIZE_LIMIT
+        value: "10mb"
+      - key: LOG_LEVEL
+        value: "info"
+      - key: REDIS_URL
+        sync: false  # Set in Render dashboard or use internal Redis
+    # Remove buildCommand since we're using Docker
+    autoDeploy: true
+
+  # Frontend + Nginx Proxy Service
+  - type: web
+    name: gitagpt-frontend-proxy
+    env: docker
+    dockerfilePath: ./Dockerfile.nginx-frontend
+    dockerContext: ./
+    plan: starter
+    region: oregon
+    branch: main
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+
+  # Redis Cache (optional)
+  - type: redis
+    name: gitagpt-redis
+    plan: starter
+    region: oregon
+    ipAllowList: []  # Allow all IPs, or specify your backend IPs
+
+databases:
+  # PostgreSQL Database (if needed for additional data)
+  - name: gitagpt-db
+    databaseName: gitagpt
+    user: gitagpt_user
+    plan: starter
+    region: oregon
+    ipAllowList: []  # Allow all IPs, or specify your backend IPs

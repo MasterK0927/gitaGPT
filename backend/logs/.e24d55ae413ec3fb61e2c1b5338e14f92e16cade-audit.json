@@ -1,0 +1,35 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/.e24d55ae413ec3fb61e2c1b5338e14f92e16cade-audit.json",
+    "files": [
+        {
+            "date": 1753019005728,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-20.log",
+            "hash": "3d63e241e814823be3088a63b6c445792b762485df86ab54731a465fd4f8af79"
+        },
+        {
+            "date": 1753036372898,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-21.log",
+            "hash": "d8164e6d16fd9ea05da9c6c56017a7e5402f874830113575490ec93b5d555dfe"
+        },
+        {
+            "date": 1753126176242,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-22.log",
+            "hash": "d489d3e7a9b087d3edd3ff396894c28dd80c1e955936bb0d1b3fd47bdb7e334d"
+        },
+        {
+            "date": 1753209027664,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-23.log",
+            "hash": "22fbbfd3bc6c15fe2e86643bb4cf9ec89d535f4f93e820d54ff99052958be556"
+        },
+        {
+            "date": 1753333060003,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-24.log",
+            "hash": "4fb6e57b94b0bd073a3a2f7adee440bf7b55947ce0c3d36d3b121918ea999173"
+        }
+    ],
+    "hashType": "sha256"
+}

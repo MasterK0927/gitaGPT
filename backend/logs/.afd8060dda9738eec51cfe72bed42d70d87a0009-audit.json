@@ -1,0 +1,35 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/.afd8060dda9738eec51cfe72bed42d70d87a0009-audit.json",
+    "files": [
+        {
+            "date": 1753019005726,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-07-20.log",
+            "hash": "9573283616f3758f117d3dc48e2d8255a2f78a8034339b0e85a16ac544825fef"
+        },
+        {
+            "date": 1753036372897,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-07-21.log",
+            "hash": "d3d800f8444c5cbedd63334cab2cc6fd2e3fe850115fb6e24e4fbbe00f6d4785"
+        },
+        {
+            "date": 1753128518267,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-07-22.log",
+            "hash": "f198dce030ed1ae599ad3cd1cc499c1d2ca35d2a66cd37a82e985b56ddee2113"
+        },
+        {
+            "date": 1753210409206,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-07-23.log",
+            "hash": "2c5ae9aacee13741c3a683db624e90e6ade63723a67eb72ddb88da7f5d7c1159"
+        },
+        {
+            "date": 1753333060002,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-07-24.log",
+            "hash": "064a6bce7b2b9d92db417b0fce8694bdc826c5b4d925bea17ef7d5f954161097"
+        }
+    ],
+    "hashType": "sha256"
+}

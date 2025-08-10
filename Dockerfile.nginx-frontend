@@ -1,0 +1,67 @@
+# Stage 1: Frontend build with security scanning
+FROM node:18-alpine AS frontend-builder
+
+# Install security updates
+RUN apk update && apk upgrade && \
+    apk add --no-cache git && \
+    rm -rf /var/cache/apk/*
+
+WORKDIR /app
+
+# Copy package files for dependency caching
+COPY frontend/package*.json ./
+
+# Install dependencies with error handling
+RUN npm ci --frozen-lockfile --no-audit && \
+    npm cache clean --force
+
+# Copy source code and build
+COPY frontend/ ./
+COPY frontend/.env.production .env
+
+# Set production environment and build
+ENV NODE_ENV=production
+RUN npm run build
+
+# Stage 2: Nginx production server
+FROM nginx:1.25-alpine AS production
+
+# Install security updates and required packages
+RUN apk update && apk upgrade && \
+    apk add --no-cache \
+    curl \
+    tini \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /tmp/*
+
+# Copy built frontend
+COPY --from=frontend-builder /app/dist /usr/share/nginx/html
+
+# Copy optimized nginx configuration
+COPY nginx-render.conf /etc/nginx/nginx.conf
+
+# Create necessary directories and set permissions
+RUN mkdir -p /tmp /var/cache/nginx && \
+    chmod -R 755 /usr/share/nginx/html && \
+    chmod 644 /etc/nginx/nginx.conf
+
+# Remove unnecessary files for security
+RUN rm -rf \
+    /etc/nginx/conf.d/default.conf \
+    /var/tmp/*
+
+# Run as root for Render deployment (Render handles security isolation)
+
+# Set environment variables
+ENV NGINX_WORKER_PROCESSES=auto \
+    NGINX_WORKER_CONNECTIONS=1024
+
+# Expose port (documentation only)
+EXPOSE 80
+
+# Health check with proper configuration
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
+    CMD curl -f http://localhost:80/health || exit 1
+
+# Start nginx (no tini needed for simple nginx process)
+CMD ["nginx", "-g", "daemon off;"]

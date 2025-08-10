@@ -1,0 +1,66 @@
+# ================================
+# Local Testing Docker Compose
+# Industry Best Practices
+# ================================
+
+version: '3.8'
+
+services:
+  # Frontend + Nginx Proxy
+  frontend-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx-frontend
+    container_name: gitagpt-frontend-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - gitagpt-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  # Backend (for local testing)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gitagpt-backend-local
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - ./backend/.env
+    volumes:
+      - backend-audios:/app/audios
+      - backend-logs:/app/logs
+    networks:
+      - gitagpt-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  gitagpt-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  backend-audios:
+    driver: local
+  backend-logs:
+    driver: local

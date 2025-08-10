@@ -1,0 +1,355 @@
+/* Chat Page Responsive Styles */
+
+/* Custom scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+  border-radius: 0.375rem;
+}
+
+.scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+  background-color: rgb(75 85 99);
+  border-radius: 0.375rem;
+}
+
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  border-radius: 0.375rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* Chat container responsive fixes */
+.chat-container {
+  height: 100vh;
+  height: 100dvh;
+  /* Dynamic viewport height for mobile */
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 767px) {
+
+  /* Ensure chat input is always visible on mobile */
+  .mobile-chat-container .chat-input-container {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+
+  .dark .mobile-chat-container .chat-input-container {
+    background: rgba(17, 24, 39, 0.98) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Adjust chat history height on mobile */
+  .chat-history-mobile {
+    max-height: 25vh;
+    overflow-y: auto;
+  }
+
+  /* Status monitor positioning to avoid blocking input */
+  .status-monitor-mobile {
+    bottom: 100px;
+    /* Move above fixed chat input */
+    right: 8px;
+    z-index: 35;
+  }
+
+  /* Draggable status monitor */
+  .draggable-status-monitor {
+    user-select: none;
+    touch-action: none;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .draggable-status-monitor:active {
+    cursor: grabbing !important;
+  }
+
+  /* Intelligent expansion animations */
+  .status-expand-up {
+    transform-origin: bottom center;
+  }
+
+  .status-expand-down {
+    transform-origin: top center;
+  }
+
+  /* Smooth position transitions */
+  .status-position-transition {
+    transition: left 0.3s ease-out, top 0.3s ease-out, right 0.3s ease-out, bottom 0.3s ease-out;
+  }
+
+  /* Modal positioning fixes */
+  .modal-portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .modal-portal>* {
+    pointer-events: auto;
+  }
+
+  /* Chat toggle button positioning */
+  .chat-toggle-mobile {
+    top: 16px;
+    left: 16px;
+    z-index: 50;
+  }
+
+  /* Ensure proper spacing for mobile chat */
+  .mobile-chat-container {
+    padding-bottom: 0px;
+    /* Input is now fixed, no extra padding needed */
+  }
+
+  /* Add bottom padding to chat content to avoid input overlap */
+  .mobile-chat-content {
+    padding-bottom: 120px;
+    /* Space for fixed input + status monitor */
+  }
+
+  /* Ensure chat input takes full width on mobile */
+  .chat-input-container .flex {
+    width: 100%;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-panel-tablet {
+    width: min(400px, 40vw);
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 768px) {
+
+  /* On desktop, make chat input relative within the chat panel */
+  .chat-input-container {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 10 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none;
+    padding-bottom: 8px;
+  }
+
+  .dark .chat-input-container {
+    background: rgba(17, 24, 39, 0.95) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chat-panel-desktop {
+    width: min(450px, 35vw);
+    max-width: 500px;
+  }
+
+  /* Better scrollbar visibility on desktop */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1440px) {
+  .chat-panel-large {
+    width: min(500px, 30vw);
+  }
+}
+
+/* Animation improvements */
+.chat-slide-in {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+.chat-slide-out {
+  animation: slideOutToRight 0.3s ease-in;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Mobile chat slide animations */
+.mobile-chat-slide-up {
+  animation: slideUpFromBottom 0.3s ease-out;
+}
+
+.mobile-chat-slide-down {
+  animation: slideDownToBottom 0.3s ease-in;
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownToBottom {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Focus and interaction improvements */
+.chat-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.5);
+  border-color: rgb(147, 51, 234);
+}
+
+/* Ensure proper text wrapping in chat messages */
+.chat-message {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 767px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .chat-button {
+    padding: 12px;
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chat-container {
+    border: 2px solid;
+  }
+
+  .chat-input {
+    border: 2px solid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  .chat-slide-in,
+  .chat-slide-out,
+  .mobile-chat-slide-up,
+  .mobile-chat-slide-down {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Print styles */
+@media print {
+
+  .status-monitor-mobile,
+  .chat-toggle-mobile,
+  .chat-input-container {
+    display: none;
+  }
+
+  .chat-history {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* Safe area insets for devices with notches */
+@supports (padding: max(0px)) {
+  .chat-container {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+
+  .chat-input-container {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 767px) and (orientation: landscape) {
+  .chat-history-mobile {
+    max-height: 20vh;
+  }
+
+  .mobile-chat-container {
+    padding-bottom: 60px;
+  }
+
+  .status-monitor-mobile {
+    bottom: 60px;
+  }
+}
