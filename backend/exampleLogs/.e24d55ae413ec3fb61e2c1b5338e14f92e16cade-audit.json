@@ -29,6 +29,11 @@
             "date": 1753333060003,
             "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-07-24.log",
             "hash": "4fb6e57b94b0bd073a3a2f7adee440bf7b55947ce0c3d36d3b121918ea999173"
+        },
+        {
+            "date": 1754833606264,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/combined-2025-08-10.log",
+            "hash": "57aa5f70b46f04206df01eb3b4ec56ada081e98e9e47549a42aecbd1c8f1cfd7"
         }
     ],
     "hashType": "sha256"

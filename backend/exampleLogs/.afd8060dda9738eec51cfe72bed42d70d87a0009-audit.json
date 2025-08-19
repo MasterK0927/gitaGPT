@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/.afd8060dda9738eec51cfe72bed42d70d87a0009-audit.json",
+    "files": [
+        {
+            "date": 1754833606263,
+            "name": "/home/keshav/Desktop/HobbyProjects/gitagpt/backend/logs/error-2025-08-10.log",
+            "hash": "4337e2eb36133d11b0bd6c96b4439fbe1e740f3acba0a4fed7841d93312b723a"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,38 @@
+{"level":"info","message":"Database service initialized successfully","service":"gita-chatbot","timestamp":"2025-08-10 19:16:47"}
+{"level":"info","message":"Redis connected","service":"gita-chatbot","timestamp":"2025-08-10 19:16:47"}
+{"level":"info","message":"Cache service initialized successfully","service":"gita-chatbot","timestamp":"2025-08-10 19:16:48"}
+{"level":"info","message":"Database service initialized successfully","service":"gita-chatbot","timestamp":"2025-08-10 19:16:48"}
+{"level":"info","message":"Redis connected","service":"gita-chatbot","timestamp":"2025-08-10 19:16:48"}
+{"level":"info","message":"Cache service initialized successfully","service":"gita-chatbot","timestamp":"2025-08-10 19:16:49"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/stats","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51"}
+{"averageMessagesPerConversation":9.9,"insightsGained":19,"lastActiveAt":"2025-08-05T16:43:53.379+00:00","level":"info","message":"User stats retrieved for 7897f702-4f6d-44ba-abc0-b9c61cd63a8c:","service":"gita-chatbot","timeSpentFormatted":"1h 58m","timeSpentMinutes":118,"timestamp":"2025-08-10 19:17:51","totalConversations":8,"totalMessages":79}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:51"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/stats","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:52","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:52"}
+{"averageMessagesPerConversation":9.9,"insightsGained":19,"lastActiveAt":"2025-08-05T16:43:53.379+00:00","level":"info","message":"User stats retrieved for 7897f702-4f6d-44ba-abc0-b9c61cd63a8c:","service":"gita-chatbot","timeSpentFormatted":"1h 58m","timeSpentMinutes":118,"timestamp":"2025-08-10 19:17:52","totalConversations":8,"totalMessages":79}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57"}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57"}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:57"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/sounds","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/stats","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Retrieved 0 meditation sessions for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/types","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/schedules","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/sessions","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"level":"info","message":"Retrieved 0 meditation sessions for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"level":"info","message":"Retrieved 1 meditation schedules for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/conversations","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"info","message":"Fetching conversations for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"clerkId":"user_308d5EB0ciaYxDZyWBFaQYi7iHs","email":"keshav.agarwal.12325@gmail.com","endpoint":"/profile","level":"info","message":"User authenticated","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59","userId":"7897f702-4f6d-44ba-abc0-b9c61cd63a8c"}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"level":"info","message":"Retrieved 1 meditation schedules for user: 7897f702-4f6d-44ba-abc0-b9c61cd63a8c","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
+{"level":"warn","message":"New function not available, falling back to direct query:","service":"gita-chatbot","timestamp":"2025-08-10 19:17:59"}
