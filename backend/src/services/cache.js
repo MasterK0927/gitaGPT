@@ -299,7 +299,9 @@ class CacheService {
     try {
       if (!this.isConnected) return;
 
-      // Clean up expired keys (Redis handles this automatically, but we can force it)
+      // Clean up expired keys 
+      // Redis handles this automatically
+      // but force it
       const keys = await this.redis.keys('*');
       logger.info(`Cache contains ${keys.length} keys`);
 
