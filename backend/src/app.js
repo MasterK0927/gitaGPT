@@ -4,11 +4,22 @@ import helmet from 'helmet';
 import config from './config/index.js';
 import logger from './utils/logger.js';
 import routes from './routes/index.js';
+import { 
+  errorHandler, 
+  notFound, 
+  handleUncaughtException, 
+  handleUnhandledRejection 
+} from './middleware/errorHandler.js';
+import { 
+  corsOptions, 
+  securityHeaders, 
+  sanitizeInput, 
+  requestSizeLimiter 
+} from './middleware/security.js';
 
-// Enhanced services (ES modules) - Initialize with error handling
 let database, cache, enhancedLogger, messageQueue, queueConsumers, cronService;
 
-// Initialize services with individual error handling
+// Dynamic imports with error handling
 try {
   database = (await import('./services/database.js')).default;
   console.log('✅ Database service loaded');
@@ -51,7 +62,6 @@ try {
   console.log('⚠️ Cron service not available:', error.message);
 }
 
-// Initialize services that were successfully loaded
 try {
   // Initialize logger with database for log storage
   if (database && logger.setDatabase) {
@@ -73,21 +83,9 @@ try {
 } catch (error) {
   console.log('⚠️ Service initialization error:', error.message);
 }
-import { 
-  errorHandler, 
-  notFound, 
-  handleUncaughtException, 
-  handleUnhandledRejection 
-} from './middleware/errorHandler.js';
-import { 
-  corsOptions, 
-  securityHeaders, 
-  sanitizeInput, 
-  requestSizeLimiter 
-} from './middleware/security.js';
 
 /**
- * Initialize enhanced services
+ * Initialize services
  */
 async function initializeServices() {
   try {
@@ -150,14 +148,15 @@ function createApp() {
   // 404 handler
   app.use(notFound);
 
-  // Global error handler (must be last)
+  // Global error handler
+  // must be last
   app.use(errorHandler);
 
   return app;
 }
 
 /**
- * Start the server with production-ready error handling
+ * Start the server with error handling
  */
 async function startServer() {
   try {
