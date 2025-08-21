@@ -363,7 +363,8 @@ router.post('/cleanup-dev-data', catchAsync(async (req, res) => {
  * @desc Manually trigger user cleanup (for testing)
  * @access Public (should be protected in production)
  */
-// Cleanup users route removed - cronService no longer available
+
+// TODO: add cleanup users route - cronService
 
 /**
  * Check message queue health
@@ -420,6 +421,7 @@ async function checkQueueConsumers() {
 /**
  * Check cron service
  */
-// checkCronService function removed - cronService no longer available
+
+// TODO: impl checkCronService function - cronService
 
 export default router;
