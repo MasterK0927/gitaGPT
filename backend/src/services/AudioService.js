@@ -213,7 +213,7 @@ class AudioService {
       try {
         await this.generateLipSyncOptimized(wavFilename, jsonFilename, requestId);
         lipSyncGenerated = true;
-        logger.info(`👄 [${requestId}] Lip sync generated in ${Date.now() - lipSyncStart}ms`);
+        logger.info(`[${requestId}] Lip sync generated in ${Date.now() - lipSyncStart}ms`);
       } catch (lipSyncError) {
         logger.warn(`⚠️ [${requestId}] Lip sync failed in ${Date.now() - lipSyncStart}ms, using fallback`, {
           error: lipSyncError.message
