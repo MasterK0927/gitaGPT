@@ -7,10 +7,12 @@ class Logger {
   constructor() {
     this.logs = [];
     this.maxLogs = config.logConfig.maxLogs;
-    this.database = null; // Will be set later to avoid circular imports
+    // Will be set later to avoid circular imports
+    this.database = null;
   }
 
-  // Set database instance (called from app initialization)
+  // Set database instance
+  // called from app initialization
   setDatabase(databaseInstance) {
     this.database = databaseInstance;
   }
@@ -51,7 +53,8 @@ class Logger {
       this.logs = this.logs.slice(-this.maxLogs);
     }
 
-    // Store in database (async, don't wait for it)
+    // Store in database
+    // async, don't wait for it
     this.storeInDatabase(logEntry);
   }
 

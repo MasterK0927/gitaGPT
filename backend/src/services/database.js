@@ -29,7 +29,8 @@ class DatabaseService {
         .select('count')
         .limit(1);
 
-      if (error && error.code !== 'PGRST116') { // PGRST116 is "table not found" which is ok during setup
+      if (error && error.code !== 'PGRST116') {
+        // PGRST116 is "table not found" which is ok during setup
         throw error;
       }
 
@@ -422,8 +423,8 @@ class DatabaseService {
 
       return {
         ...conversation,
-        threads: threads,        // New hierarchical format
-        messages: messages       // Flat format for backward compatibility
+        threads: threads,
+        messages: messages
       };
     } catch (error) {
       logger.error('Error fetching conversation with messages:', error);
@@ -563,7 +564,8 @@ class DatabaseService {
     }
   }
 
-  // Legacy method for backward compatibility (will be removed)
+  // Legacy method for backward compatibility 
+  // TODO: will be removed
   async createMessage(conversationId, messageData) {
     if (messageData.role === 'user') {
       return this.createUserMessage(conversationId, messageData.content);

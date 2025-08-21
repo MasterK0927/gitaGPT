@@ -1,6 +1,5 @@
 import logger from '../utils/logger.js';
 import messageQueue from './messageQueue.js';
-// emailService removed - email functionality disabled
 import database from './database.js';
 
 /**
@@ -136,8 +135,6 @@ class QueueConsumers {
           logger.info(`🔄 QUEUE: Processing meditation_schedule_created for schedule: ${schedule.id}`);
           try {
             logger.info(`📧 QUEUE: Email service disabled, skipping email for schedule: ${schedule.id}`);
-            // Email service removed - skip sending email
-
             logger.info(`✅ QUEUE: Email skipped, updating status to 'sent' for schedule: ${schedule.id}`);
             // Update email status to sent
             await database.updateScheduleEmailStatus(schedule.id, 'sent');
@@ -340,7 +337,7 @@ class QueueConsumers {
 
     logger.info(`User ${userId} reached ${streak}-day meditation streak!`);
 
-    // Could send congratulatory email, unlock achievements, etc.
+    // TODO: Could send congratulatory email, unlock achievements, etc.
   }
 
   /**
@@ -350,7 +347,7 @@ class QueueConsumers {
     const health = messageQueue.getHealthStatus();
     logger.info('Queue health check completed', health);
 
-    // Could store health metrics, send alerts if unhealthy, etc.
+    // TODO: Could store health metrics, send alerts if unhealthy, etc.
   }
 
   /**
@@ -360,7 +357,7 @@ class QueueConsumers {
     const metrics = messageQueue.getMetrics();
     logger.debug('Queue metrics collected', metrics);
 
-    // Could store metrics in database, send to monitoring service, etc.
+    // TODO: Could store metrics in database, send to monitoring service, etc.
   }
 
   /**
@@ -369,7 +366,7 @@ class QueueConsumers {
   async performCleanup(payload) {
     logger.info('Performing queue cleanup tasks');
 
-    // Could clean up old messages, dead letter queues, etc.
+    // TODO: Could clean up old messages, dead letter queues, etc.
   }
 
   /**

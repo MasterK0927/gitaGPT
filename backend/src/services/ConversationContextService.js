@@ -13,7 +13,8 @@ class ConversationContextService {
   }
 
   /**
-   * Get conversation context (cache-first, then database)
+   * Get conversation context
+   * cache-first, then database
    */
   async getConversationContext(conversationId, requestId) {
     try {
@@ -214,7 +215,8 @@ class ConversationContextService {
   }
 
   /**
-   * Force persist all pending messages (called on app shutdown or periodically)
+   * Force persist all pending messages
+   * called on app shutdown or periodically
    */
   async flushPendingMessages(conversationId, requestId) {
     try {
@@ -267,7 +269,7 @@ class ConversationContextService {
    */
   async cleanupOldContexts() {
     try {
-      // This would be implemented with Redis SCAN in a real scenario
+      // TODO: This will be implemented with Redis SCAN in a real scenario
       logger.info('Context cleanup would run here');
       return true;
     } catch (error) {
