@@ -1,8 +1,4 @@
 /**
- * Custom error classes for better error handling
- */
-
-/**
  * Base application error class
  */
 export class AppError extends Error {
