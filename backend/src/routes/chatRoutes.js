@@ -36,8 +36,6 @@ router.post(
   ChatController.chat
 );
 
-
-
 /**
  * @route GET /api/v1/chat/conversations
  * @desc Get user's conversations
