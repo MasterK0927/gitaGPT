@@ -3,7 +3,7 @@ import database from '../services/database.js';
 import logger from '../services/logger.js';
 import config from '../config/index.js';
 
-// Enhanced middleware to require authentication with session validation
+// Authentication with session validation
 const requireAuth = ClerkExpressRequireAuth({
   onError: (error) => {
     logger.security('Authentication failed', null, { error: error.message });
